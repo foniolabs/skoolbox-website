@@ -28,7 +28,7 @@ export default function Hero() {
               transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
               className="display text-[48px] tracking-tight sm:text-[64px] md:text-[60px] lg:text-[76px]"
             >
-              Smart, simple,
+              <span className="whitespace-nowrap">Smart, simple,</span>
               <br />
               magical
             </motion.h1>

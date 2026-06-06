@@ -10,6 +10,7 @@ import {
   WifiOff,
   BookOpen,
   Sparkles,
+  ArrowUpRight,
   type LucideIcon,
 } from "lucide-react";
 
@@ -17,59 +18,71 @@ type Feature = {
   title: string;
   desc: string;
   icon: LucideIcon;
-  color: string;
+  tint: string;
+  tag?: string;
+};
+
+const featured: Feature = {
+  title: "AI Tutor",
+  desc: "Explains, narrates, and answers students' questions out loud — with teacher-friendly guardrails that keep every response on-topic and curriculum-safe.",
+  icon: Brain,
+  tint: "bg-primary/10 text-primary",
+  tag: "Most loved",
 };
 
 const features: Feature[] = [
   {
-    title: "AI Tutor",
-    desc: "Explains, narrates, and answers students' questions with teacher-friendly guardrails.",
-    icon: Brain,
-    color: "bg-primary/10 text-primary",
-  },
-  {
     title: "Lesson Planner",
-    desc: "Turn existing notes into weekly plans, lesson slides, and classroom prompts.",
+    desc: "Turn notes into weekly plans, slides, and classroom prompts in seconds.",
     icon: Calendar,
-    color: "bg-accent-tint text-accent-dark",
+    tint: "bg-accent-tint text-accent-dark",
   },
   {
     title: "Presentation Mode",
-    desc: "Full-screen teaching flow with equations, narration, and quick class activities.",
+    desc: "Full-screen teaching flow with equations, narration, and quick activities.",
     icon: Presentation,
-    color: "bg-sky/10 text-sky",
+    tint: "bg-sky/10 text-sky",
   },
   {
     title: "Quiz Builder",
-    desc: "Create quizzes quickly, auto-grade responses, and give students instant feedback.",
+    desc: "Build quizzes fast, auto-grade responses, and return instant feedback.",
     icon: ClipboardCheck,
-    color: "bg-teal/15 text-teal",
+    tint: "bg-teal/15 text-teal",
   },
   {
     title: "Analytics",
-    desc: "See class progress, spot struggling students, and plan interventions early.",
+    desc: "See class progress, spot struggling students, and act early.",
     icon: BarChart3,
-    color: "bg-primary/10 text-primary",
+    tint: "bg-primary/10 text-primary",
   },
   {
     title: "Offline-first",
-    desc: "Core lessons, quizzes, notes, and records keep working without internet.",
+    desc: "Lessons, quizzes, notes, and records keep working without internet.",
     icon: WifiOff,
-    color: "bg-accent-tint text-accent-dark",
+    tint: "bg-accent-tint text-accent-dark",
   },
   {
     title: "Smart Notes",
-    desc: "Automatically generate summaries and study guides from any lesson content.",
+    desc: "Auto-generate summaries and study guides from any lesson content.",
     icon: Sparkles,
-    color: "bg-sky/10 text-sky",
+    tint: "bg-sky/10 text-sky",
   },
   {
     title: "Curriculum Aligned",
-    desc: "All content follows Nigerian curriculum from JSS1 to SS3 including WAEC and NECO prep.",
+    desc: "Full Nigerian curriculum, JSS1 to SS3, with WAEC and NECO prep.",
     icon: BookOpen,
-    color: "bg-teal/15 text-teal",
+    tint: "bg-teal/15 text-teal",
   },
 ];
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 28 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
 
 export default function Features() {
   return (
@@ -89,52 +102,96 @@ export default function Features() {
           </p>
         </div>
 
-        {/* 4-column card grid */}
-        <motion.div 
+        {/* Bento grid */}
+        <motion.div
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-60px" }}
           variants={{
-            hidden: { opacity: 0 },
-            show: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.1,
-              }
-            }
+            hidden: {},
+            show: { transition: { staggerChildren: 0.07 } },
           }}
-          className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
+          className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {features.map((f) => (
+          {/* Featured card */}
+          <motion.div
+            variants={cardVariants}
+            className="group relative flex flex-col justify-between overflow-hidden rounded-[28px] border border-ink/5 bg-cream-50 p-8 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl sm:col-span-2 sm:flex-row sm:items-stretch sm:gap-8"
+          >
+            <div className="flex flex-1 flex-col">
+              <div className="flex items-center gap-3">
+                <div
+                  className={`grid h-16 w-16 place-items-center rounded-2xl ${featured.tint}`}
+                >
+                  <featured.icon size={30} strokeWidth={2.4} />
+                </div>
+                {featured.tag && (
+                  <span className="rounded-full bg-primary px-3 py-1 text-xs font-bold uppercase tracking-wide text-cream-50">
+                    {featured.tag}
+                  </span>
+                )}
+              </div>
+              <h3 className="mt-6 text-3xl font-bold tracking-tight text-ink">
+                {featured.title}
+              </h3>
+              <p className="mt-3 max-w-md text-[15px] leading-relaxed text-ink/60">
+                {featured.desc}
+              </p>
+              <a
+                href="#download"
+                className="mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-bold text-primary transition-colors hover:text-accent-dark"
+              >
+                Try the AI Tutor
+                <ArrowUpRight size={16} strokeWidth={2.6} />
+              </a>
+            </div>
+
+            {/* Decorative panel */}
+            <div className="relative mt-6 hidden flex-1 overflow-hidden rounded-2xl bg-primary/5 sm:mt-0 sm:block">
+              <div className="absolute inset-0 grid place-items-center">
+                <Brain
+                  size={120}
+                  strokeWidth={1.2}
+                  className="text-primary/25 transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-accent/15 blur-2xl" />
+              <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-full bg-teal/15 blur-2xl" />
+            </div>
+          </motion.div>
+
+          {/* Standard cards */}
+          {features.map((f, i) => (
             <motion.div
               key={f.title}
-              variants={{
-                hidden: { opacity: 0, y: 30, scale: 0.95 },
-                show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
-              }}
-              className="group relative overflow-hidden rounded-[24px] bg-cream-50 p-7 shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-xl active:scale-[0.98]"
+              variants={cardVariants}
+              className="group relative flex flex-col overflow-hidden rounded-[28px] border border-ink/5 bg-cream-50 p-7 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
             >
-              {/* Icon with hover float */}
-              <motion.div
-                whileHover={{ rotate: [0, -5, 5, 0], scale: 1.1 }}
-                className={`grid h-14 w-14 place-items-center rounded-2xl ${f.color} transition-colors duration-300 group-hover:bg-opacity-20`}
-              >
-                <f.icon size={26} strokeWidth={2.5} />
-              </motion.div>
+              <div className="flex items-start justify-between">
+                <motion.div
+                  whileHover={{ rotate: [0, -6, 6, 0] }}
+                  className={`grid h-14 w-14 place-items-center rounded-2xl ${f.tint}`}
+                >
+                  <f.icon size={26} strokeWidth={2.5} />
+                </motion.div>
+                <span className="font-mono text-sm font-bold text-ink/15">
+                  {String(i + 2).padStart(2, "0")}
+                </span>
+              </div>
 
-              {/* Content */}
-              <h3 className="mt-6 text-xl font-black tracking-tight text-ink group-hover:text-primary transition-colors">
+              <h3 className="mt-6 text-xl font-bold tracking-tight text-ink transition-colors group-hover:text-primary">
                 {f.title}
               </h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-ink/60">
+              <p className="mt-2.5 text-[15px] leading-relaxed text-ink/60">
                 {f.desc}
               </p>
 
-              {/* Decorative background element on hover */}
-              <div className="absolute -right-4 -bottom-4 h-24 w-24 rounded-full bg-primary/5 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-
-              {/* Bottom accent line on hover */}
-              <div className="absolute bottom-0 left-0 h-1.5 w-full bg-gradient-to-r from-primary via-accent to-teal opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              {/* Reveal arrow */}
+              <div className="mt-auto flex items-center pt-5">
+                <span className="grid h-9 w-9 place-items-center rounded-full bg-ink/5 text-ink/40 transition-all duration-300 group-hover:bg-primary group-hover:text-cream-50">
+                  <ArrowUpRight size={16} strokeWidth={2.6} />
+                </span>
+              </div>
             </motion.div>
           ))}
         </motion.div>
