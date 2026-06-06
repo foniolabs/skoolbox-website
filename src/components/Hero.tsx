@@ -26,9 +26,9 @@ export default function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-              className="display text-[48px] font-black tracking-tighter sm:text-[64px] md:text-[60px] lg:text-[76px]"
+              className="display text-[48px] tracking-tight sm:text-[64px] md:text-[60px] lg:text-[76px]"
             >
-              Smart and simple,
+              Smart, simple,
               <br />
               magical
             </motion.h1>

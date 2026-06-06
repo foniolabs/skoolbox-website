@@ -81,7 +81,7 @@ export default function Features() {
           <h2 className="display mt-5 text-4xl md:text-6xl lg:text-[4.8rem]">
             Everything your
             <br />
-            <span className="text-ink/40 italic font-medium">classroom needs</span>
+            <span className="text-ink/35">classroom needs</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg font-medium leading-relaxed text-ink/60">
             Every module is designed for the way schools actually operate:

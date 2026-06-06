@@ -32,10 +32,10 @@ export default function FinalCTA() {
 
           {/* Content */}
           <div className="relative z-10 flex flex-col items-center">
-            <h2 className="display mx-auto max-w-3xl text-center text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-6xl md:text-7xl">
+            <h2 className="display mx-auto max-w-3xl text-center text-4xl leading-[1.04] tracking-tight text-white sm:text-6xl md:text-7xl">
               Teaching isn&rsquo;t easy,
               <br />
-              <span className="opacity-60 italic font-medium">learning should be.</span>
+              <span className="opacity-55">learning should be.</span>
             </h2>
 
             {/* 3D Icon */}
@@ -52,8 +52,8 @@ export default function FinalCTA() {
               className="relative my-8 md:my-10 h-32 w-32 md:h-44 md:w-44"
             >
               <img 
-                src="/brain/3fae4870-8792-4931-9a0c-7f872ab7f2d7/3d_education_icon_1780748858610.png" 
-                alt="3D Education Icon"
+                src="/3d/education-icon.png" 
+                alt="3D graduation cap"
                 className="h-full w-full object-contain pointer-events-none select-none drop-shadow-2xl"
               />
               <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full opacity-20" />
