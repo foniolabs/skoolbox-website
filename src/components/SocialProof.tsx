@@ -91,10 +91,10 @@ export default function SocialProof() {
         <div className="container-page pb-20 pt-8 lg:pt-16">
           {/* Centered heading */}
           <div className="mx-auto max-w-4xl text-center">
-            <h2 className="display text-4xl md:text-6xl lg:text-[4.8rem] leading-[1.02]">
+            <h2 className="display text-4xl md:text-6xl lg:text-[4.8rem] leading-[1.04]">
               You teach the class&mdash;
               <br />
-              <span className="text-ink/40 italic font-medium">we support the flow</span>
+              <span className="text-ink/35">we support the flow</span>
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg font-medium text-ink/60">
               Discover, plan, present, quiz, and track all classroom activity in

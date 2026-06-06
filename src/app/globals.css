@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Cabinet Grotesk for sans, Fraunces for premium serif display. */
-@import url("https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&f[]=fraunces@400,500,600,700,800,900&display=swap");
+/* General Sans — clean, friendly geometric sans used across headings and body (zenda-style). */
+@import url("https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=cabinet-grotesk@500,700,800&display=swap");
 
 :root {
-  --font-display: "Fraunces", serif;
-  --font-sans: "Cabinet Grotesk", "Inter", system-ui, sans-serif;
+  --font-display: "General Sans", "Cabinet Grotesk", system-ui, sans-serif;
+  --font-sans: "General Sans", "Inter", system-ui, sans-serif;
 }
 
 html {
@@ -48,7 +48,7 @@ body {
   }
 
   .display {
-    @apply font-[--font-display] font-black tracking-[-0.03em] leading-[0.92] text-ink;
+    @apply font-[--font-display] font-semibold tracking-[-0.025em] leading-[1.02] text-ink;
   }
 
   .section {
