@@ -20,7 +20,7 @@ export default function ContactUs() {
   }
 
   return (
-    <section id="contact" className="section bg-cream-100">
+    <section id="contact" className="section bg-secondary-50">
       <div className="container-page">
         {/* Centered heading */}
         <div className="mx-auto max-w-3xl text-center">
@@ -48,13 +48,13 @@ export default function ContactUs() {
             {
               icon: Phone,
               label: "Call us",
-              value: "+234 800 SKOOLBX",
-              href: "tel:+2348007566529",
+              value: "08036803974",
+              href: "tel:+2348036803974",
             },
             {
               icon: MapPin,
               label: "Visit us",
-              value: "Lekki Phase 1, Lagos",
+              value: "Rayfield, Jos",
               href: "#",
             },
           ].map((c, i) => (
@@ -65,9 +65,9 @@ export default function ContactUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.45, delay: i * 0.08 }}
-              className="group flex flex-col items-center gap-3 rounded-[20px] bg-cream-50 p-6 text-center shadow-card transition hover:shadow-soft"
+              className="sticker-card group flex flex-col items-center gap-3 p-6 text-center transition hover:-translate-y-1"
             >
-              <div className="grid h-12 w-12 place-items-center rounded-full bg-primary text-white">
+              <div className="grid h-12 w-12 place-items-center rounded-full border-2 border-ink bg-primary text-white">
                 <c.icon size={20} strokeWidth={2.3} />
               </div>
               <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-ink/50">
@@ -85,11 +85,11 @@ export default function ContactUs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
-            className="rounded-[24px] bg-cream-50 p-8 shadow-card md:p-10"
+            className="sticker-card p-8 md:p-10"
           >
             {sent ? (
               <div className="flex flex-col items-center justify-center py-14 text-center">
-                <div className="grid h-16 w-16 place-items-center rounded-full bg-primary text-white">
+                <div className="grid h-16 w-16 place-items-center rounded-full border-2 border-ink bg-primary text-white">
                   <CheckCircle2 size={28} strokeWidth={2.3} />
                 </div>
                 <h3 className="mt-5 text-2xl font-black tracking-tight">
@@ -139,10 +139,10 @@ export default function ContactUs() {
                           key={r}
                           onClick={() => setForm({ ...form, role: r })}
                           className={[
-                            "rounded-full px-4 py-2 text-sm font-semibold transition",
+                            "rounded-full border-2 border-ink px-4 py-2 text-sm font-bold transition",
                             form.role === r
                               ? "bg-primary text-white"
-                              : "bg-cream-200 text-ink/70 hover:bg-cream-300",
+                              : "bg-white text-ink hover:bg-sun",
                           ].join(" ")}
                         >
                           {r}

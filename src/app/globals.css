@@ -2,12 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* General Sans — clean, friendly geometric sans used across headings and body (zenda-style). */
-@import url("https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=cabinet-grotesk@500,700,800&display=swap");
+/* Storybook type system — Outfit (rounded geometric display) + Nunito (warm,
+   friendly body). Both have soft, approachable terminals that suit a playful
+   yet credible education brand. */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&display=swap");
 
 :root {
-  --font-display: "General Sans", "Cabinet Grotesk", system-ui, sans-serif;
-  --font-sans: "General Sans", "Inter", system-ui, sans-serif;
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-sans: "Nunito", system-ui, sans-serif;
 }
 
 html {
@@ -16,8 +18,8 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background: #f4f3ef;
-  color: #1f1f1f;
+  background: #f6f5ff;
+  color: #1e1b33;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -27,28 +29,35 @@ body {
     @apply mx-auto w-full max-w-[1280px] px-6 md:px-10;
   }
 
+  /* Chunky, rounded "pill" buttons with a hard sticker offset that collapses
+     on press — playful but still tappable and accessible. */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-xs font-bold uppercase tracking-[0.15em] text-white shadow-soft transition hover:bg-primary-dark hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-ink bg-primary px-7 py-3.5 text-sm font-extrabold tracking-tight text-white shadow-sticker-sm transition-all duration-150 hover:-translate-y-0.5 hover:shadow-sticker active:translate-x-[3px] active:translate-y-[3px] active:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/30;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-ink bg-secondary px-7 py-3.5 text-sm font-extrabold tracking-tight text-white shadow-sticker-sm transition-all duration-150 hover:-translate-y-0.5 hover:shadow-sticker active:translate-x-[3px] active:translate-y-[3px] active:shadow-none focus:outline-none focus-visible:ring-4 focus-visible:ring-secondary/30;
   }
 
   .btn-dark {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-ink px-7 py-3.5 text-xs font-bold uppercase tracking-[0.15em] text-cream-100 transition hover:bg-ink/85 hover:scale-[1.03] active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-ink bg-ink px-7 py-3.5 text-sm font-extrabold tracking-tight text-cream-50 shadow-sticker-sm transition-all duration-150 hover:-translate-y-0.5 active:translate-x-[3px] active:translate-y-[3px] active:shadow-none;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/80 bg-transparent px-8 py-3.5 text-sm font-bold text-white transition hover:bg-white hover:text-ink;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-ink bg-white px-8 py-3.5 text-sm font-extrabold tracking-tight text-ink shadow-sticker-sm transition-all duration-150 hover:-translate-y-0.5 hover:shadow-sticker active:translate-x-[3px] active:translate-y-[3px] active:shadow-none;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-ink-muted transition hover:text-ink;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold text-ink-muted transition hover:text-ink;
   }
 
+  /* Sticker-style eyebrow badge — small rounded chip with a doodle feel. */
   .eyebrow {
-    @apply text-[12px] font-bold uppercase tracking-[0.28em] text-primary;
+    @apply inline-flex items-center gap-1.5 rounded-full border-2 border-ink bg-sun px-3.5 py-1.5 text-[12px] font-extrabold uppercase tracking-[0.14em] text-ink;
   }
 
   .display {
-    @apply font-[--font-display] font-semibold tracking-[-0.025em] leading-[1.02] text-ink;
+    @apply font-[--font-display] font-extrabold tracking-[-0.02em] leading-[1.02] text-ink;
   }
 
   .section {
@@ -59,8 +68,25 @@ body {
     @apply rounded-[24px] bg-cream-50 p-8 shadow-card md:p-10;
   }
 
+  /* Storybook "sticker" card — bold ink outline + hard offset shadow. */
+  .sticker-card {
+    @apply rounded-[28px] border-2 border-ink bg-white shadow-sticker;
+  }
+
+  /* Hand-drawn marker highlight behind a word/phrase. Wrap inline text. */
+  .marker {
+    @apply relative inline-block;
+  }
+  .marker > span {
+    @apply relative z-10;
+  }
+  .marker::after {
+    content: "";
+    @apply absolute inset-x-[-4px] bottom-[0.08em] -z-0 h-[0.5em] -rotate-1 rounded-[4px] bg-sun/70;
+  }
+
   .input {
-    @apply w-full rounded-[12px] bg-white border border-cream-400/70 px-4 py-3.5 text-[15px] text-ink placeholder:text-ink/35 transition focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/15;
+    @apply w-full rounded-[14px] bg-white border-2 border-ink/15 px-4 py-3.5 text-[15px] font-medium text-ink placeholder:text-ink/35 transition focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/15;
   }
 
   .marquee-mask {
@@ -72,6 +98,28 @@ body {
       transparent
     );
   }
+
+  .anime-reveal > * {
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  .marquee-mask-y {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+  }
 }
 
 @layer utilities {
@@ -80,5 +128,18 @@ body {
   }
   .preserve-3d {
     transform-style: preserve-3d;
+  }
+}
+
+/* Respect users who prefer reduced motion: pause looping decorative animations
+   and shorten transitions so nothing jitters. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }

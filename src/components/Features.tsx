@@ -1,200 +1,186 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Brain,
-  Calendar,
-  Presentation,
-  ClipboardCheck,
-  BarChart3,
-  WifiOff,
-  BookOpen,
-  Sparkles,
-  ArrowUpRight,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import Illustration, { type IllustrationName } from "./Illustrations";
+import { Star, Dots } from "./Doodles";
 
 type Feature = {
   title: string;
   desc: string;
-  icon: LucideIcon;
-  tint: string;
+  art: IllustrationName;
+  panel: string;
   tag?: string;
+  cta?: string;
 };
 
-const featured: Feature = {
-  title: "AI Tutor",
-  desc: "Explains, narrates, and answers students' questions out loud — with teacher-friendly guardrails that keep every response on-topic and curriculum-safe.",
-  icon: Brain,
-  tint: "bg-primary/10 text-primary",
-  tag: "Most loved",
-};
-
-const features: Feature[] = [
-  {
-    title: "Lesson Planner",
-    desc: "Turn notes into weekly plans, slides, and classroom prompts in seconds.",
-    icon: Calendar,
-    tint: "bg-accent-tint text-accent-dark",
-  },
-  {
-    title: "Presentation Mode",
-    desc: "Full-screen teaching flow with equations, narration, and quick activities.",
-    icon: Presentation,
-    tint: "bg-sky/10 text-sky",
-  },
-  {
-    title: "Quiz Builder",
-    desc: "Build quizzes fast, auto-grade responses, and return instant feedback.",
-    icon: ClipboardCheck,
-    tint: "bg-teal/15 text-teal",
-  },
-  {
-    title: "Analytics",
-    desc: "See class progress, spot struggling students, and act early.",
-    icon: BarChart3,
-    tint: "bg-primary/10 text-primary",
-  },
-  {
-    title: "Offline-first",
-    desc: "Lessons, quizzes, notes, and records keep working without internet.",
-    icon: WifiOff,
-    tint: "bg-accent-tint text-accent-dark",
-  },
-  {
-    title: "Smart Notes",
-    desc: "Auto-generate summaries and study guides from any lesson content.",
-    icon: Sparkles,
-    tint: "bg-sky/10 text-sky",
-  },
-  {
-    title: "Curriculum Aligned",
-    desc: "Full Nigerian curriculum, JSS1 to SS3, with WAEC and NECO prep.",
-    icon: BookOpen,
-    tint: "bg-teal/15 text-teal",
-  },
+// Four vertical columns that auto-scroll up / down in alternating directions.
+const columns: Feature[][] = [
+  [
+    {
+      title: "AI Tutor",
+      desc: "Explains, narrates, and answers students' questions out loud — with teacher-friendly guardrails that keep every response curriculum-safe.",
+      art: "ai-tutor",
+      panel: "bg-secondary-100",
+      tag: "Most loved",
+      cta: "Try the AI Tutor",
+    },
+    {
+      title: "Analytics",
+      desc: "See class progress, spot struggling students, and act early.",
+      art: "analytics",
+      panel: "bg-secondary-100",
+    },
+  ],
+  [
+    {
+      title: "Lesson Planner",
+      desc: "Turn notes into weekly plans, slides, and classroom prompts in seconds.",
+      art: "lesson-planner",
+      panel: "bg-accent-tint",
+    },
+    {
+      title: "Offline-first",
+      desc: "Lessons, quizzes, notes, and records keep working without internet.",
+      art: "offline",
+      panel: "bg-accent-tint",
+    },
+  ],
+  [
+    {
+      title: "Presentation Mode",
+      desc: "Full-screen teaching flow with equations, narration, and quick activities.",
+      art: "presentation",
+      panel: "bg-sky/20",
+    },
+    {
+      title: "Smart Notes",
+      desc: "Auto-generate summaries and study guides from any lesson content.",
+      art: "notes",
+      panel: "bg-sky/20",
+    },
+  ],
+  [
+    {
+      title: "Quiz Builder",
+      desc: "Build quizzes fast, auto-grade responses, and return instant feedback.",
+      art: "quiz",
+      panel: "bg-primary-100",
+    },
+    {
+      title: "Curriculum Aligned",
+      desc: "Full Nigerian curriculum, JSS1 to SS3, with WAEC and NECO prep.",
+      art: "curriculum",
+      panel: "bg-primary-100",
+    },
+  ],
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 28 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
-  },
-};
+function FeatureCard({ f, i }: { f: Feature; i: number }) {
+  return (
+    <motion.div
+      whileHover={{ y: -6 }}
+      transition={{ type: "spring", stiffness: 300, damping: 22 }}
+      className="sticker-card mb-5 flex w-full flex-col p-6"
+    >
+      <div className="mb-5 flex items-start justify-between gap-3">
+        <h3 className="display text-lg tracking-tight text-ink sm:text-xl">
+          {f.title}
+        </h3>
+        {f.tag && (
+          <span className="shrink-0 rounded-full border-2 border-ink bg-sun px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wide text-ink">
+            {f.tag}
+          </span>
+        )}
+      </div>
+
+      {/* Animated illustration panel */}
+      <div
+        className={`relative mb-5 grid place-items-center overflow-hidden rounded-2xl border-2 border-ink py-9 ${f.panel}`}
+      >
+        <div className="absolute -right-4 -top-4 h-20 w-20 rounded-full bg-accent/15 blur-2xl" />
+        <div className="absolute -bottom-4 -left-4 h-20 w-20 rounded-full bg-secondary/15 blur-2xl" />
+        <motion.div
+          animate={{ y: [0, -10, 0], rotate: [0, 4, -4, 0] }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 0.35,
+          }}
+          className="relative"
+        >
+          <Illustration name={f.art} className="h-24 w-24" />
+        </motion.div>
+      </div>
+
+      <p className="text-[14.5px] leading-relaxed text-ink/60">{f.desc}</p>
+
+      {f.cta && (
+        <a
+          href="#download"
+          className="mt-5 inline-flex w-fit items-center gap-1.5 text-sm font-bold text-primary transition-colors hover:text-accent-dark"
+        >
+          {f.cta}
+          <ArrowUpRight size={16} strokeWidth={2.6} />
+        </a>
+      )}
+    </motion.div>
+  );
+}
+
+function CarouselColumn({
+  items,
+  reverse,
+}: {
+  items: Feature[];
+  reverse?: boolean;
+}) {
+  // Items are duplicated; each card carries its own bottom margin so the two
+  // stacked copies are identical blocks and the -50% translate loops seamlessly.
+  return (
+    <div className="marquee-mask-y group relative h-[600px] overflow-hidden">
+      <div
+        className={`flex flex-col group-hover:[animation-play-state:paused] ${
+          reverse ? "animate-marquee-vertical-reverse" : "animate-marquee-vertical"
+        }`}
+      >
+        {[...items, ...items].map((f, i) => (
+          <FeatureCard key={`${f.title}-${i}`} f={f} i={i % items.length} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Features() {
   return (
-    <section id="features" className="section bg-cream-100">
+    <section id="features" className="relative overflow-hidden bg-secondary-50 section">
+      <Star className="absolute right-[8%] top-[12%] h-7 w-7 text-accent animate-wobble" />
+      <Dots className="absolute left-[5%] top-[20%] h-14 w-14 text-secondary/25" />
       <div className="container-page">
         {/* Centered heading */}
         <div className="mx-auto max-w-3xl text-center">
-          <p className="eyebrow">Features</p>
+          <span className="eyebrow">Everything in one app</span>
           <h2 className="display mt-5 text-4xl md:text-6xl lg:text-[4.8rem]">
-            Everything your
-            <br />
-            <span className="text-ink/35">classroom needs</span>
+            Everything your{" "}
+            <span className="marker text-primary">
+              <span>classroom</span>
+            </span>{" "}
+            needs
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg font-medium leading-relaxed text-ink/60">
+          <p className="mx-auto mt-6 max-w-xl text-lg font-semibold leading-relaxed text-ink/65">
             Every module is designed for the way schools actually operate:
             shared devices, mixed connectivity, and busy teachers.
           </p>
         </div>
 
-        {/* Bento grid */}
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
-          variants={{
-            hidden: {},
-            show: { transition: { staggerChildren: 0.07 } },
-          }}
-          className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {/* Featured card */}
-          <motion.div
-            variants={cardVariants}
-            className="group relative flex flex-col justify-between overflow-hidden rounded-[28px] border border-ink/5 bg-cream-50 p-8 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl sm:col-span-2 sm:flex-row sm:items-stretch sm:gap-8"
-          >
-            <div className="flex flex-1 flex-col">
-              <div className="flex items-center gap-3">
-                <div
-                  className={`grid h-16 w-16 place-items-center rounded-2xl ${featured.tint}`}
-                >
-                  <featured.icon size={30} strokeWidth={2.4} />
-                </div>
-                {featured.tag && (
-                  <span className="rounded-full bg-primary px-3 py-1 text-xs font-bold uppercase tracking-wide text-cream-50">
-                    {featured.tag}
-                  </span>
-                )}
-              </div>
-              <h3 className="mt-6 text-3xl font-bold tracking-tight text-ink">
-                {featured.title}
-              </h3>
-              <p className="mt-3 max-w-md text-[15px] leading-relaxed text-ink/60">
-                {featured.desc}
-              </p>
-              <a
-                href="#download"
-                className="mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-bold text-primary transition-colors hover:text-accent-dark"
-              >
-                Try the AI Tutor
-                <ArrowUpRight size={16} strokeWidth={2.6} />
-              </a>
-            </div>
-
-            {/* Decorative panel */}
-            <div className="relative mt-6 hidden flex-1 overflow-hidden rounded-2xl bg-primary/5 sm:mt-0 sm:block">
-              <div className="absolute inset-0 grid place-items-center">
-                <Brain
-                  size={120}
-                  strokeWidth={1.2}
-                  className="text-primary/25 transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-accent/15 blur-2xl" />
-              <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-full bg-teal/15 blur-2xl" />
-            </div>
-          </motion.div>
-
-          {/* Standard cards */}
-          {features.map((f, i) => (
-            <motion.div
-              key={f.title}
-              variants={cardVariants}
-              className="group relative flex flex-col overflow-hidden rounded-[28px] border border-ink/5 bg-cream-50 p-7 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
-            >
-              <div className="flex items-start justify-between">
-                <motion.div
-                  whileHover={{ rotate: [0, -6, 6, 0] }}
-                  className={`grid h-14 w-14 place-items-center rounded-2xl ${f.tint}`}
-                >
-                  <f.icon size={26} strokeWidth={2.5} />
-                </motion.div>
-                <span className="font-mono text-sm font-bold text-ink/15">
-                  {String(i + 2).padStart(2, "0")}
-                </span>
-              </div>
-
-              <h3 className="mt-6 text-xl font-bold tracking-tight text-ink transition-colors group-hover:text-primary">
-                {f.title}
-              </h3>
-              <p className="mt-2.5 text-[15px] leading-relaxed text-ink/60">
-                {f.desc}
-              </p>
-
-              {/* Reveal arrow */}
-              <div className="mt-auto flex items-center pt-5">
-                <span className="grid h-9 w-9 place-items-center rounded-full bg-ink/5 text-ink/40 transition-all duration-300 group-hover:bg-primary group-hover:text-cream-50">
-                  <ArrowUpRight size={16} strokeWidth={2.6} />
-                </span>
-              </div>
-            </motion.div>
+        {/* Vertical carousel: columns scroll up / down in alternating directions */}
+        <div className="mt-16 grid grid-cols-2 gap-5 lg:grid-cols-4">
+          {columns.map((col, ci) => (
+            <CarouselColumn key={ci} items={col} reverse={ci % 2 === 1} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -6,9 +6,9 @@ import { useEffect, useRef } from "react";
 type Stat = { value: number; suffix: string; decimals?: number; label: string; note: string };
 
 const stats: Stat[] = [
-  { value: 450, suffix: "+", label: "Schools", note: "across Nigerian states" },
-  { value: 10, suffix: "k+", label: "Learners", note: "teachers and students" },
-  { value: 4.8, suffix: "", decimals: 1, label: "Rating", note: "average app feedback" },
+  { value: 0, suffix: "", label: "Schools", note: "across Nigeria" },
+  { value: 0, suffix: "", label: "Learners", note: "teachers and students" },
+  { value: 0, suffix: "", decimals: 1, label: "Rating", note: "average app feedback" },
 ];
 
 function CountUp({ to, decimals = 0 }: { to: number; decimals?: number }) {
@@ -31,6 +31,18 @@ export default function Stats() {
   return (
     <section className="bg-cream-100 py-20 md:py-28">
       <div className="container-page">
+        <div className="mx-auto mb-14 max-w-2xl text-center md:mb-16">
+          <span className="eyebrow">So far&hellip;</span>
+          <h2 className="display mt-5 text-4xl md:text-5xl lg:text-6xl">
+            Every great story
+            <br />
+            starts at <span className="text-primary">zero</span>
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-lg font-semibold text-ink/60">
+            We&rsquo;re just getting started &mdash; and you can be there from
+            the very first chapter.
+          </p>
+        </div>
         <div className="grid gap-10 sm:grid-cols-3 sm:gap-4">
           {stats.map((s, i) => (
             <motion.div

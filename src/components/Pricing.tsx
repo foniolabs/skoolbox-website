@@ -12,6 +12,7 @@ import {
   Sparkles,
   Check,
 } from "lucide-react";
+import { Star } from "./Doodles";
 
 const pillTags = [
   "AI Tutor",
@@ -68,17 +69,19 @@ const tiers = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="section bg-cream">
+    <section id="pricing" className="relative overflow-hidden bg-secondary-50 section">
+      <Star className="absolute left-[7%] top-[12%] h-6 w-6 text-sun animate-wobble" />
       <div className="container-page">
         {/* Centered heading */}
         <div className="mx-auto max-w-3xl text-center">
-          <p className="eyebrow">Pricing</p>
+          <span className="eyebrow">Pricing</span>
           <h2 className="display mt-5 text-4xl md:text-6xl lg:text-[4.2rem]">
-            Affordable.
-            <br />
-            <span className="text-ink/50">In Naira.</span>
+            Affordable.{" "}
+            <span className="marker text-primary">
+              <span>In Naira.</span>
+            </span>
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg font-medium text-ink/60">
+          <p className="mx-auto mt-6 max-w-xl text-lg font-semibold text-ink/65">
             Start free, upgrade when your school is ready.
           </p>
         </div>
@@ -91,17 +94,17 @@ export default function Pricing() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
-            className="relative flex flex-col justify-between overflow-hidden rounded-[24px] bg-cream-50 p-8 shadow-card md:p-10"
+            className="sticker-card relative flex flex-col justify-between overflow-hidden p-8 md:p-10"
           >
             {/* Decorative floating elements */}
-            <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-primary/8" />
-            <div className="absolute -bottom-4 -left-4 h-16 w-16 rounded-full bg-accent/10" />
+            <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-secondary/10" />
+            <div className="absolute -bottom-4 -left-4 h-16 w-16 rounded-full bg-accent/15" />
 
             <div className="relative z-10">
-              <div className="grid h-16 w-16 place-items-center rounded-2xl bg-primary/10">
-                <Sparkles size={28} className="text-primary" />
+              <div className="grid h-16 w-16 place-items-center rounded-2xl border-2 border-ink bg-sun">
+                <Sparkles size={28} className="text-ink" />
               </div>
-              <h3 className="mt-8 text-3xl font-black tracking-tight text-ink md:text-4xl">
+              <h3 className="display mt-8 text-3xl text-ink md:text-4xl">
                 Great tools for
                 <br />
                 every classroom
@@ -125,15 +128,17 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5, delay: 0.08 }}
-              className="flex items-center gap-6 rounded-[24px] bg-ink px-8 py-10 text-white md:px-10"
+              className="flex items-center gap-6 rounded-[28px] border-2 border-ink bg-secondary px-8 py-10 text-white shadow-sticker md:px-10"
             >
-              <div className="text-4xl md:text-5xl">✦✦</div>
+              <div className="flex gap-1 text-sun">
+                <Star className="h-9 w-9 md:h-11 md:w-11" />
+                <Star className="h-7 w-7 self-end md:h-9 md:w-9" />
+              </div>
               <div>
-                <div className="text-5xl font-black tracking-tight md:text-6xl">
-                  450+
-                </div>
-                <div className="mt-1 text-lg font-semibold text-white/60">
-                  schools across Nigeria
+                <div className="display text-3xl tracking-tight md:text-4xl">
+                  Built for
+                  <br />
+                  Nigerian classrooms
                 </div>
               </div>
             </motion.div>
@@ -144,13 +149,13 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5, delay: 0.16 }}
-              className="rounded-[24px] bg-cream-50 p-8 shadow-card"
+              className="sticker-card p-8"
             >
               <div className="flex flex-wrap gap-3">
                 {pillTags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-ink/10 px-5 py-2.5 text-sm font-semibold text-ink/70 transition hover:border-primary/30 hover:text-primary"
+                    className="rounded-full border-2 border-ink bg-white px-5 py-2.5 text-sm font-bold text-ink transition hover:bg-sun"
                   >
                     {tag}
                   </span>
@@ -160,90 +165,54 @@ export default function Pricing() {
           </div>
         </div>
 
-        {/* Pricing tiers below bento */}
-        <div className="mt-12 grid items-stretch gap-5 md:grid-cols-3">
-          {tiers.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              whileHover={{ y: -4 }}
-              className={[
-                "relative flex flex-col rounded-[24px] p-7 shadow-card transition-shadow hover:shadow-soft md:p-8",
-                i === 1
-                  ? "bg-ink text-white"
-                  : "border border-primary/10 bg-cream-50 text-ink",
-              ].join(" ")}
-            >
-              {i === 1 && (
-                <div className="absolute right-5 top-5 inline-flex items-center gap-1 rounded-full bg-accent px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-ink">
-                  <Sparkles size={12} /> Popular
-                </div>
-              )}
-              <div>
-                <div
-                  className={`text-[11px] font-bold uppercase tracking-[0.25em] ${
-                    i === 1 ? "text-accent-light" : "text-primary"
-                  }`}
-                >
-                  {t.name}
-                </div>
-                <div className="mt-5 flex items-baseline gap-1.5">
-                  <span className="text-4xl font-black tracking-tight md:text-5xl">
-                    {t.price}
-                  </span>
-                </div>
-                <div
-                  className={`mt-1 text-xs ${
-                    i === 1 ? "text-white/55" : "text-ink/50"
-                  }`}
-                >
-                  {t.period}
-                </div>
-                <p
-                  className={`mt-3 text-sm ${
-                    i === 1 ? "text-white/75" : "text-ink/65"
-                  }`}
-                >
-                  {t.blurb}
-                </p>
-              </div>
-
-              <ul className="mt-6 flex-1 space-y-3">
-                {t.features.map((f) => (
-                  <li
-                    key={f}
-                    className={`flex gap-3 text-sm ${
-                      i === 1 ? "text-white/85" : "text-ink/80"
-                    }`}
-                  >
-                    <Check
-                      size={16}
-                      className={`mt-0.5 shrink-0 ${
-                        i === 1 ? "text-accent-light" : "text-primary"
-                      }`}
-                      strokeWidth={2.5}
-                    />
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href="#download"
-                className={[
-                  "mt-7 inline-flex items-center justify-center rounded-full px-6 py-3.5 text-xs font-bold uppercase tracking-[0.15em] transition hover:scale-[1.03]",
-                  i === 1
-                    ? "bg-primary text-white hover:bg-primary-dark"
-                    : "bg-ink text-white hover:bg-ink/85",
-                ].join(" ")}
+        {/* Talk to us card */}
+        <div className="mx-auto mt-12 max-w-md">
+          {tiers
+            .filter((t) => t.name === "District")
+            .map((t) => (
+              <motion.div
+                key={t.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5 }}
+                whileHover={{ y: -6 }}
+                className="sticker-card relative flex flex-col bg-white p-7 text-ink md:p-8"
               >
-                {t.cta}
-              </a>
-            </motion.div>
-          ))}
+                <div>
+                  <div className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-primary">
+                    {t.name}
+                  </div>
+                  <div className="mt-5 flex items-baseline gap-1.5">
+                    <span className="display text-4xl tracking-tight md:text-5xl">
+                      {t.price}
+                    </span>
+                  </div>
+                  <div className="mt-1 text-xs text-ink/50">{t.period}</div>
+                  <p className="mt-3 text-sm text-ink/65">{t.blurb}</p>
+                </div>
+
+                <ul className="mt-6 flex-1 space-y-3">
+                  {t.features.map((f) => (
+                    <li key={f} className="flex gap-3 text-sm text-ink/80">
+                      <Check
+                        size={16}
+                        className="mt-0.5 shrink-0 text-primary"
+                        strokeWidth={3}
+                      />
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href="#contact"
+                  className="mt-7 inline-flex items-center justify-center rounded-full border-2 border-ink bg-primary px-6 py-3.5 text-sm font-extrabold tracking-tight text-white shadow-sticker-sm transition-all duration-150 hover:-translate-y-0.5 active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
+                >
+                  {t.cta}
+                </a>
+              </motion.div>
+            ))}
         </div>
       </div>
     </section>

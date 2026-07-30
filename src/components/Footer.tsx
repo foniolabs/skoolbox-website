@@ -1,9 +1,12 @@
 import Image from "next/image";
-import { Instagram, Linkedin, Facebook } from "lucide-react";
+import Link from "next/link";
+import { Instagram, Linkedin, Facebook, Heart } from "lucide-react";
+import { Star, Sparkle, Squiggle } from "./Doodles";
 
 const columns = [
   {
     title: "Product",
+    color: "text-secondary",
     links: [
       { label: "Schools", href: "#pricing" },
       { label: "Teachers", href: "#features" },
@@ -12,94 +15,111 @@ const columns = [
   },
   {
     title: "Company",
+    color: "text-accent",
     links: [
       { label: "Blog", href: "#" },
-      { label: "Contact Us", href: "mailto:hello@skoolbox.xyz" },
-      { label: "About Us", href: "#" },
+      { label: "Roadmap", href: "#" },
+      { label: "Contact", href: "mailto:hello@skoolbox.xyz" },
     ],
   },
   {
     title: "Legal",
+    color: "text-primary",
     links: [
-      { label: "Terms and Conditions", href: "#" },
-      { label: "Privacy policy", href: "#" },
+      { label: "Privacy", href: "#" },
+      { label: "Terms", href: "#" },
+      { label: "DPA", href: "#" },
     ],
   },
 ];
 
+const socials = [
+  { Icon: Instagram, label: "Instagram" },
+  { Icon: Linkedin, label: "LinkedIn" },
+  { Icon: Facebook, label: "Facebook" },
+];
+
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-cream-100">
-      <div className="container-page py-16 md:py-20">
-        {/* Social icons — right aligned */}
-        <div className="flex justify-end gap-3">
-          <a
-            href="#"
-            aria-label="Instagram"
-            className="grid h-10 w-10 place-items-center rounded-full border border-ink/15 text-ink transition hover:border-primary hover:text-primary"
-          >
-            <Instagram size={16} />
-          </a>
-          <a
-            href="#"
-            aria-label="LinkedIn"
-            className="grid h-10 w-10 place-items-center rounded-full border border-ink/15 text-ink transition hover:border-primary hover:text-primary"
-          >
-            <Linkedin size={16} />
-          </a>
-          <a
-            href="#"
-            aria-label="Facebook"
-            className="grid h-10 w-10 place-items-center rounded-full border border-ink/15 text-ink transition hover:border-primary hover:text-primary"
-          >
-            <Facebook size={16} />
-          </a>
-        </div>
+    <footer className="relative overflow-hidden bg-cream-50 text-ink">
+      {/* scattered doodles */}
+      <Star className="absolute left-[6%] top-14 h-6 w-6 text-sun animate-wobble" />
+      <Sparkle className="absolute right-[10%] top-12 h-5 w-5 text-accent animate-float-gentle" />
+      <Squiggle className="absolute left-[34%] top-24 hidden h-5 w-24 text-coral md:block" />
 
-        {/* Description */}
-        <div className="mt-10 max-w-3xl">
-          <p className="text-sm leading-relaxed text-ink/60 md:text-[15px]">
-            SkoolBox is a specialist education technology partner to schools,
-            colleges &amp; learning institutions, building products &amp;
-            services exclusively for the education sector.
-          </p>
-          <p className="mt-4 text-sm leading-relaxed text-ink/60 md:text-[15px]">
-            It is a friendly app for teachers and schools that helps simplify
-            lesson planning, quizzing, and AI tutoring, with offline-first
-            support. On the other side, it helps institutions with enabling
-            end-to-end digitization and improving learning outcomes.
-          </p>
-        </div>
+      <div className="container-page relative z-10 pb-10 pt-16 md:pt-20">
+        <div className="grid items-end gap-12 lg:grid-cols-[1.15fr_auto]">
+          {/* Left: brand + social + link columns */}
+          <div>
+            <Link href="/" className="flex items-center gap-2 transition hover:opacity-85">
+              <Image src="/logo.svg" alt="SkoolBox" width={32} height={32} className="h-8 w-8" />
+              <span className="text-[20px] font-black leading-none tracking-[-0.04em] text-ink md:text-[22px]">
+                skoolbox
+              </span>
+            </Link>
+            <p className="mt-5 max-w-md text-sm font-semibold leading-relaxed text-ink/60">
+              The playful, offline-first classroom companion that helps Nigerian
+              teachers plan, teach, quiz, and track — all in one app.
+            </p>
 
-        {/* Link columns */}
-        <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-3 md:max-w-2xl">
-          {columns.map((c) => (
-            <div key={c.title}>
-              <div className="text-[11px] font-black uppercase tracking-[0.25em] text-primary">
-                {c.title}
-              </div>
-              <ul className="mt-4 space-y-3">
-                {c.links.map((l) => (
-                  <li key={l.label}>
-                    <a
-                      href={l.href}
-                      className="text-base font-semibold text-ink transition hover:text-primary"
-                    >
-                      {l.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+            <div className="mt-6 flex gap-3">
+              {socials.map(({ Icon, label }) => (
+                <a
+                  key={label}
+                  href="#"
+                  aria-label={label}
+                  className="grid h-10 w-10 place-items-center rounded-full border-2 border-ink bg-white text-ink shadow-sticker-sm transition-all duration-150 hover:-translate-y-0.5 hover:bg-sun active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+                >
+                  <Icon size={17} strokeWidth={2.2} />
+                </a>
+              ))}
             </div>
-          ))}
+
+            {/* Link columns */}
+            <div className="mt-12 grid max-w-lg grid-cols-3 gap-8 sm:gap-12">
+              {columns.map((col) => (
+                <div key={col.title}>
+                  <div className={`text-[12px] font-extrabold uppercase tracking-[0.18em] ${col.color}`}>
+                    {col.title}
+                  </div>
+                  <ul className="mt-5 space-y-3.5">
+                    {col.links.map((l) => (
+                      <li key={l.label}>
+                        <a
+                          href={l.href}
+                          className="text-sm font-bold text-ink/70 transition hover:text-ink"
+                        >
+                          {l.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: playful illustration */}
+          <div className="justify-self-center lg:justify-self-end">
+            <Image
+              src="/footer-illustration.svg"
+              alt="A student happily reading on a stack of books"
+              width={1022}
+              height={813}
+              className="h-[200px] w-auto select-none md:h-[260px] lg:h-[300px]"
+              priority={false}
+            />
+          </div>
         </div>
 
-        {/* Copyright */}
-        <div className="mt-12 flex flex-col items-start justify-between gap-2 border-t border-ink/10 pt-6 text-xs text-ink/50 sm:flex-row sm:items-center">
-          <span>
-            © {new Date().getFullYear()} SkoolBox. All rights reserved.
+        {/* Copyright row */}
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t-2 border-dashed border-ink/15 pt-7 text-[13px] font-bold text-ink/55 sm:flex-row">
+          <span>© {year} SkoolBox. All rights reserved.</span>
+          <span className="inline-flex items-center gap-1.5">
+            Made with <Heart size={14} className="text-coral" fill="currentColor" /> in Jos
           </span>
-          <span>skoolbox.xyz</span>
         </div>
       </div>
     </footer>

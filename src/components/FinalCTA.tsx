@@ -1,82 +1,85 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Download, ShieldCheck, WifiOff } from "lucide-react";
+import { ShieldCheck, WifiOff } from "lucide-react";
+import { Sparkle } from "./Doodles";
 
 export default function FinalCTA() {
   return (
-    <section id="download" className="bg-cream py-20 md:py-28">
+    <section id="download" className="bg-cream-50 pb-20 pt-32 md:pb-32 md:pt-48">
       <div className="container-page">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7 }}
-          className="relative overflow-hidden rounded-[32px] bg-ink px-8 py-20 text-center text-white md:px-16 md:py-28"
+          className="relative rounded-[40px] border-2 border-ink bg-[#f9943b] px-8 py-20 text-center text-ink shadow-sticker md:px-16 md:py-28"
         >
-          {/* Floating decorative dots */}
-          <div className="absolute left-[15%] top-[20%] h-2 w-2 rounded-full bg-primary/60" />
-          <div className="absolute left-[25%] top-[65%] h-3 w-3 rounded-full bg-accent/50" />
-          <div className="absolute right-[20%] top-[15%] h-2.5 w-2.5 rounded-full bg-teal/50" />
-          <div className="absolute right-[12%] top-[70%] h-2 w-2 rounded-full bg-sky/50" />
-          <div className="absolute left-[8%] top-[45%] h-1.5 w-1.5 rounded-full bg-white/20" />
-          <div className="absolute right-[30%] top-[80%] h-1.5 w-1.5 rounded-full bg-white/15" />
+          {/* Circular 3D Icon + decorative cluster - straddling the top edge.
+              Outer div owns the centering/edge offset; the inner motion.div only
+              handles the entrance animation so Framer Motion's inline transform
+              doesn't clobber the -translate-x/y centering. */}
+          <div className="absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-1/2">
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+              className="relative"
+            >
+            {/* Decorative dots + sparkles scattered around the circle */}
+            <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              {/* Soft pink dot, upper-left */}
+              <div className="absolute -left-[130px] -top-[80px] h-5 w-5 rounded-full bg-pink-300" />
+              {/* Purple dot, upper-right */}
+              <div className="absolute left-[120px] -top-[90px] h-3.5 w-3.5 rounded-full bg-secondary" />
+              {/* Gray dot, left */}
+              <div className="absolute -left-[170px] top-[10px] h-2.5 w-2.5 rounded-full bg-ink/25" />
+              {/* Purple dot, far-left mid */}
+              <div className="absolute -left-[120px] top-[40px] h-2.5 w-2.5 rounded-full bg-secondary-light" />
+              {/* Purple dot, right mid */}
+              <div className="absolute left-[170px] top-[30px] h-2.5 w-2.5 rounded-full bg-secondary-light" />
+              {/* Gray dot, lower-right */}
+              <div className="absolute left-[150px] top-[95px] h-2.5 w-2.5 rounded-full bg-ink/25" />
 
-          {/* Sparkle */}
-          <div className="absolute left-[30%] top-[25%] text-xl text-accent/60 animate-float-gentle">
-            ✦
-          </div>
-          <div className="absolute right-[25%] top-[30%] text-sm text-primary/50 animate-float-gentle [animation-delay:1s]">
-            ✦
+              {/* Gold sparkles */}
+              <Sparkle className="absolute left-[150px] -top-[60px] h-6 w-6 text-ink animate-float-gentle" />
+              <Sparkle className="absolute -left-[120px] top-[70px] h-6 w-6 text-ink animate-float-gentle [animation-delay:1.2s]" />
+            </div>
+
+            <div className="relative h-40 w-40 md:h-52 md:w-52 rounded-full bg-white flex items-center justify-center shadow-platform border-[3px] border-ink">
+              <motion.img
+                animate={{
+                  y: [0, -8, 0],
+                  rotate: [0, 3, -3, 0]
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                src="/3d/education-icon.png"
+                alt="3D graduation cap"
+                className="h-[75%] w-[75%] object-contain"
+              />
+            </div>
+            </motion.div>
           </div>
 
           {/* Content */}
-          <div className="relative z-10 flex flex-col items-center">
-            <h2 className="display mx-auto max-w-3xl text-center text-4xl leading-[1.04] tracking-tight text-white sm:text-6xl md:text-7xl">
+          <div className="relative z-10 flex flex-col items-center pt-32 md:pt-44">
+            <h2 className="display mx-auto max-w-4xl text-center text-4xl leading-[1.02] tracking-tight text-ink sm:text-6xl md:text-7xl">
               Teaching isn&rsquo;t easy,
               <br />
-              <span className="opacity-55">learning should be.</span>
+              learning should be.
             </h2>
 
-            {/* 3D Icon */}
-            <motion.div
-              animate={{ 
-                y: [0, -15, 0],
-                rotate: [0, 2, -2, 0]
-              }}
-              transition={{ 
-                duration: 6, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-              }}
-              className="relative my-8 md:my-10 h-32 w-32 md:h-44 md:w-44"
-            >
-              <img 
-                src="/3d/education-icon.png" 
-                alt="3D graduation cap"
-                className="h-full w-full object-contain pointer-events-none select-none drop-shadow-2xl"
-              />
-              <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full opacity-20" />
-            </motion.div>
-
-            <div className="mt-2 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-              <motion.a 
-                href="#" 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-                className="btn-outline group border-white/20 bg-white/5 hover:bg-white hover:text-ink transition-all duration-300"
-              >
-                <Download size={16} />
-                Download App
-              </motion.a>
-            </div>
-
-            <div className="mt-6 flex justify-center gap-5 text-sm font-semibold text-white/50">
-              <span className="inline-flex items-center gap-1.5">
-                <WifiOff size={14} /> Offline-first
+            <div className="mt-10 flex justify-center gap-6 text-[13px] font-bold tracking-tight text-ink/65">
+              <span className="inline-flex items-center gap-2">
+                <WifiOff size={14} /> OFFLINE-FIRST
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <ShieldCheck size={14} /> Local data
+                <ShieldCheck size={14} /> LOCAL DATA
               </span>
             </div>
           </div>

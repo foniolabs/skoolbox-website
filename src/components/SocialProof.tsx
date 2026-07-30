@@ -36,32 +36,21 @@ const bRight = [
 
 const allBadges = [...bInside, ...bLeft, ...bRight];
 
-const logos = [
-  "Greenwood",
-  "FGC Abuja",
-  "Loyola Jesuit",
-  "Corona Schools",
-  "Lagos Model",
-  "Atlantic Hall",
-  "British Intl.",
-  "Chrisland",
-];
-
 function LaptopMockup() {
   return (
     <div className="relative mx-auto w-full max-w-[500px] perspective-1000">
       <div className="relative pt-[60%]">
         {/* Screen */}
-        <div className="absolute inset-0 rounded-t-2xl border-4 border-ink/10 bg-ink p-1.5 shadow-2xl">
+        <div className="absolute inset-0 rounded-t-2xl border-[3px] border-ink bg-ink p-1.5 shadow-sticker">
           <div className="h-full w-full overflow-hidden rounded-lg bg-cream-50 relative">
             {/* Mock content */}
             <div className="p-4 space-y-4">
-              <div className="h-8 w-32 rounded-md bg-primary/10" />
+              <div className="h-8 w-32 rounded-md bg-primary/20" />
               <div className="grid grid-cols-2 gap-4">
-                <div className="h-24 rounded-lg bg-ink/5" />
-                <div className="h-24 rounded-lg bg-ink/5" />
+                <div className="h-24 rounded-lg border-2 border-ink/15 bg-secondary/15" />
+                <div className="h-24 rounded-lg border-2 border-ink/15 bg-accent/15" />
               </div>
-              <div className="h-20 rounded-lg bg-primary/5 border border-primary/10" />
+              <div className="h-20 rounded-lg border-2 border-ink/15 bg-primary/10" />
             </div>
             {/* Glow */}
             <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent pointer-events-none" />
@@ -82,10 +71,8 @@ export default function SocialProof() {
     offset: ["start end", "end start"],
   });
 
-  const loopedLogos = [...logos, ...logos, ...logos, ...logos];
-
   return (
-    <section ref={containerRef} className="relative bg-cream min-h-[350vh]">
+    <section ref={containerRef} className="relative bg-cream-50 min-h-[350vh] mt-24">
       {/* Sticky wrapper */}
       <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
         <div className="container-page pb-20 pt-8 lg:pt-16">
@@ -94,9 +81,9 @@ export default function SocialProof() {
             <h2 className="display text-4xl md:text-6xl lg:text-[4.8rem] leading-[1.04]">
               You teach the class&mdash;
               <br />
-              <span className="text-ink/35">we support the flow</span>
+              <span className="text-primary">we support the flow</span>
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg font-medium text-ink/60">
+            <p className="mx-auto mt-6 max-w-xl text-lg font-semibold text-ink/65">
               Discover, plan, present, quiz, and track all classroom activity in
               one place
             </p>
@@ -146,12 +133,12 @@ export default function SocialProof() {
                     }}
                     className="absolute"
                   >
-                    <div 
-                      className="flex items-center gap-4 rounded-full bg-white px-7 py-4 shadow-card-hover border border-white/50 backdrop-blur-sm group transition-transform"
+                    <div
+                      className="flex items-center gap-4 rounded-full border-2 border-ink bg-white px-7 py-4 shadow-sticker-sm group transition-transform"
                     >
-                      <div 
+                      <div
                         className="flex items-center justify-center rounded-full p-2"
-                        style={{ backgroundColor: `${b.color}15`, color: b.color }}
+                        style={{ backgroundColor: `${b.color}22`, color: b.color }}
                       >
                         <b.icon size={22} strokeWidth={2.5} />
                       </div>
@@ -181,19 +168,6 @@ export default function SocialProof() {
           </div>
         </div>
 
-        {/* Infinite Logo Marquee - Fixed at bottom of section */}
-        <div className="absolute bottom-10 left-0 w-full overflow-hidden marquee-mask opacity-40 grayscale hover:opacity-100 transition-all duration-500">
-          <div className="flex w-max animate-marquee gap-10 pr-10">
-            {loopedLogos.map((name, i) => (
-              <div
-                key={`${name}-${i}`}
-                className="text-xl font-black tracking-tighter text-ink/40 md:text-2xl whitespace-nowrap"
-              >
-                {name}
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
 
       {/* Spacing for scroll */}

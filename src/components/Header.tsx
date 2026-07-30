@@ -46,10 +46,10 @@ export default function Header() {
   return (
     <header
       className={[
-        "sticky top-0 z-50 transition-all duration-300",
+        "sticky top-0 z-50 bg-secondary-50 transition-all duration-300",
         scrolled
-          ? "bg-cream/80 backdrop-blur-md shadow-[0_2px_20px_-12px_rgba(0,0,0,0.15)]"
-          : "bg-transparent",
+          ? "shadow-[0_2px_20px_-12px_rgba(30,27,51,0.18)]"
+          : "",
       ].join(" ")}
     >
       <div className="container-page flex h-[76px] items-center justify-between md:h-[84px]">
@@ -90,14 +90,14 @@ export default function Header() {
         <button
           aria-label="Toggle menu"
           onClick={() => setOpen(!open)}
-          className="grid h-10 w-10 place-items-center rounded-full bg-cream-400/60 md:hidden"
+          className="grid h-10 w-10 place-items-center rounded-full border-2 border-ink bg-white md:hidden"
         >
           {open ? <X size={18} /> : <Menu size={18} />}
         </button>
       </div>
 
       {open && (
-        <div className="border-t border-cream-400/50 bg-cream-100 md:hidden">
+        <div className="border-t border-ink/10 bg-secondary-50 md:hidden">
           <div className="container-page flex flex-col gap-1 py-4">
             {navLinks.map((l) => (
               <a
@@ -109,9 +109,6 @@ export default function Header() {
                 {l.label}
               </a>
             ))}
-            <a href="#download" className="btn-primary mt-3 w-full">
-              Get SkoolBox
-            </a>
           </div>
         </div>
       )}

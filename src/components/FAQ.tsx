@@ -31,21 +31,22 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="section bg-cream">
+    <section id="faq" className="section bg-cream-50">
       <div className="container-page">
         {/* Centered heading */}
         <div className="mx-auto max-w-3xl text-center">
-          <p className="eyebrow">FAQ</p>
+          <span className="eyebrow">FAQ</span>
           <h2 className="display mt-5 text-4xl md:text-6xl lg:text-[4.2rem]">
-            Questions,
-            <br />
-            <span className="text-ink/50">answered.</span>
+            Questions,{" "}
+            <span className="marker text-primary">
+              <span>answered.</span>
+            </span>
           </h2>
         </div>
 
         {/* Accordion card */}
         <div className="mx-auto mt-14 max-w-3xl">
-          <div className="divide-y divide-cream-400/50 rounded-[24px] bg-cream-50 shadow-card">
+          <div className="sticker-card divide-y-2 divide-ink/10 overflow-hidden">
             {faqs.map((f, i) => {
               const isOpen = open === i;
               return (
@@ -62,10 +63,10 @@ export default function FAQ() {
                       animate={{ rotate: isOpen ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
                       className={[
-                        "grid h-9 w-9 shrink-0 place-items-center rounded-full transition-colors",
+                        "grid h-9 w-9 shrink-0 place-items-center rounded-full border-2 border-ink transition-colors",
                         isOpen
                           ? "bg-primary text-white"
-                          : "bg-cream-300 text-ink/60 group-hover:bg-primary group-hover:text-white",
+                          : "bg-sun text-ink group-hover:bg-primary group-hover:text-white",
                       ].join(" ")}
                     >
                       {isOpen ? <Minus size={14} /> : <Plus size={14} />}
