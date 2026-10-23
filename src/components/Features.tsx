@@ -22,7 +22,7 @@ const columns: Feature[][] = [
       desc: "Explains, narrates, and answers students' questions out loud — with teacher-friendly guardrails that keep every response curriculum-safe.",
       art: "ai-tutor",
       panel: "bg-secondary-100",
-      tag: "Most loved",
+      tag: "Runs offline",
       cta: "Try the AI Tutor",
     },
     {
@@ -88,7 +88,7 @@ function FeatureCard({ f, i }: { f: Feature; i: number }) {
           {f.title}
         </h3>
         {f.tag && (
-          <span className="shrink-0 rounded-full border-2 border-ink bg-sun px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wide text-ink">
+          <span className="shrink-0 rounded-full border-2 border-ink bg-sun px-2.5 py-1 text-[12px] font-extrabold uppercase tracking-wide text-ink">
             {f.tag}
           </span>
         )}

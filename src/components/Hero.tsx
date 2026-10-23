@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Download, Sparkles } from "lucide-react";
 import HeroScene from "./HeroScene";
-import { WINDOWS_DOWNLOAD_URL } from "@/lib/download";
+import { WINDOWS_DOWNLOAD_URL, WINDOWS_SIZE } from "@/lib/download";
 import { Star, Squiggle, Dots, Arrow } from "./Doodles";
 
 export default function Hero() {
@@ -31,21 +31,16 @@ export default function Hero() {
             style={{ y: yText }}
             className="z-10 text-left md:col-span-5 lg:col-span-5"
           >
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="eyebrow"
-            >
+            {/* Entrance animations are CSS (not Framer) so the hero is visible
+                as soon as the HTML + CSS arrive, without waiting for JS to
+                hydrate — matters on slow mobile connections. */}
+            <span className="eyebrow animate-fade-up">
               <Sparkles size={13} strokeWidth={2.6} />
               Built for Nigerian classrooms
-            </motion.span>
+            </span>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
-              className="display mt-5 text-[46px] leading-[1.0] tracking-tight sm:text-[60px] md:text-[58px] lg:text-[74px]"
+            <h1
+              className="display mt-5 animate-fade-up text-[46px] leading-[1.0] tracking-tight [animation-delay:50ms] sm:text-[60px] md:text-[58px] lg:text-[74px]"
             >
               Teaching that
               <br />
@@ -53,24 +48,14 @@ export default function Hero() {
               <span className="marker text-primary">
                 <span>magic</span>
               </span>
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.72, delay: 0.14, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-5 max-w-[400px] text-[17px] font-semibold leading-relaxed text-ink/70 md:text-[18px]"
-            >
+            <p className="mt-5 max-w-[400px] animate-fade-up text-[17px] font-semibold leading-relaxed text-ink/70 [animation-delay:140ms] md:text-[18px]">
               Plan lessons, teach with an AI tutor, quiz your class, and track
               every student — all in one playful app that works even offline.
-            </motion.p>
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.72, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-8 flex flex-wrap items-center gap-3"
-            >
+            <div className="mt-8 flex animate-fade-up flex-wrap items-center gap-3 [animation-delay:220ms]">
               <a href={WINDOWS_DOWNLOAD_URL} className="btn-primary">
                 <Download size={16} strokeWidth={2.6} />
                 Download for Windows
@@ -78,27 +63,26 @@ export default function Hero() {
               <a href="#features" className="btn-outline">
                 See how it works
               </a>
-            </motion.div>
+            </div>
+            <p className="mt-3 animate-fade-up text-[13px] font-bold text-ink/60 [animation-delay:260ms]">
+              Free download for Windows 10/11 PCs · {WINDOWS_SIZE}
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="relative mt-7 inline-flex items-center gap-2 text-sm font-bold text-ink/55"
-            >
+            <div className="relative mt-6 inline-flex animate-fade-up items-center gap-2 text-sm font-bold text-ink/60 [animation-delay:400ms]">
               <Arrow className="h-8 w-8 -scale-x-100 text-accent" />
               No internet? No problem — works fully offline.
-            </motion.div>
+            </div>
           </motion.div>
 
           <motion.div
             style={{ y: yScene }}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="relative h-[320px] sm:h-[400px] md:col-span-7 md:h-[460px] lg:col-span-7 lg:h-[540px]"
           >
-            <HeroScene />
+            {/* Inner wrapper owns the fade so its final transform doesn't
+                override the parallax `y` on the motion.div. */}
+            <div className="h-full w-full animate-fade-up [animation-delay:100ms]">
+              <HeroScene />
+            </div>
           </motion.div>
         </div>
       </div>

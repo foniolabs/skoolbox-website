@@ -1,66 +1,50 @@
 "use client";
 
-import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
-type Stat = { value: number; suffix: string; decimals?: number; label: string; note: string };
+// Facts that are true today (see FAQ) instead of user counts — a row of
+// zeros reads as "nobody uses this", and 0.0 reads as a bad rating.
+type Fact = { value: string; label: string; note: string };
 
-const stats: Stat[] = [
-  { value: 0, suffix: "", label: "Schools", note: "across Nigeria" },
-  { value: 0, suffix: "", label: "Learners", note: "teachers and students" },
-  { value: 0, suffix: "", decimals: 1, label: "Rating", note: "average app feedback" },
+const facts: Fact[] = [
+  { value: "JSS1–SS3", label: "Nigerian curriculum", note: "every class, one app" },
+  { value: "WAEC · NECO", label: "Exam preparation", note: "plus JAMB practice" },
+  { value: "Offline", label: "No internet needed", note: "lessons, quizzes and tracking" },
 ];
-
-function CountUp({ to, decimals = 0 }: { to: number; decimals?: number }) {
-  const mv = useMotionValue(0);
-  const rounded = useTransform(mv, (v) => v.toFixed(decimals));
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-
-  useEffect(() => {
-    if (inView) {
-      const controls = animate(mv, to, { duration: 1.6, ease: "easeOut" });
-      return controls.stop;
-    }
-  }, [inView, to, mv]);
-
-  return <motion.span ref={ref}>{rounded}</motion.span>;
-}
 
 export default function Stats() {
   return (
     <section className="bg-cream-100 py-20 md:py-28">
       <div className="container-page">
         <div className="mx-auto mb-14 max-w-2xl text-center md:mb-16">
-          <span className="eyebrow">So far&hellip;</span>
+          <span className="eyebrow">Built for your school</span>
           <h2 className="display mt-5 text-4xl md:text-5xl lg:text-6xl">
-            Every great story
+            Made for how Nigerian
             <br />
-            starts at <span className="text-primary">zero</span>
+            schools <span className="text-primary">really work</span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-lg font-semibold text-ink/60">
-            We&rsquo;re just getting started &mdash; and you can be there from
-            the very first chapter.
+            Now piloting with our first partner school &mdash; and ready for
+            yours.
           </p>
         </div>
         <div className="grid gap-10 sm:grid-cols-3 sm:gap-4">
-          {stats.map((s, i) => (
+          {facts.map((f, i) => (
             <motion.div
-              key={s.label}
+              key={f.label}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               className="text-center"
             >
-              <div className="text-5xl font-black tracking-tight text-ink md:text-7xl">
-                <CountUp to={s.value} decimals={s.decimals} />
-                <span className="text-primary">{s.suffix}</span>
+              <div className="text-4xl font-black tracking-tight text-ink md:text-5xl lg:text-6xl">
+                {f.value}
               </div>
-              <div className="mt-2 text-base font-semibold text-ink/55">
-                {s.label}
+              <div className="mt-3 text-base font-semibold text-ink/65">
+                {f.label}
               </div>
-              <div className="mt-0.5 text-sm text-ink/40">{s.note}</div>
+              <div className="mt-0.5 text-sm text-ink/55">{f.note}</div>
             </motion.div>
           ))}
         </div>

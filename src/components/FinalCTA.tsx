@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Download, ShieldCheck, WifiOff } from "lucide-react";
 import { Sparkle } from "./Doodles";
@@ -49,7 +50,7 @@ export default function FinalCTA() {
             </div>
 
             <div className="relative h-40 w-40 md:h-52 md:w-52 rounded-full bg-white flex items-center justify-center shadow-platform border-[3px] border-ink">
-              <motion.img
+              <motion.div
                 animate={{
                   y: [0, -8, 0],
                   rotate: [0, 3, -3, 0]
@@ -59,10 +60,18 @@ export default function FinalCTA() {
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                src="/3d/education-icon.png"
-                alt="3D graduation cap"
-                className="h-[75%] w-[75%] object-contain"
-              />
+                className="relative h-[75%] w-[75%]"
+              >
+                {/* Source PNG is 1024px / 1.4 MB; next/image serves a
+                    resized WebP/AVIF at the ~156px it actually renders. */}
+                <Image
+                  src="/3d/education-icon.png"
+                  alt="3D graduation cap"
+                  fill
+                  sizes="(min-width: 768px) 156px, 120px"
+                  className="object-contain"
+                />
+              </motion.div>
             </div>
             </motion.div>
           </div>

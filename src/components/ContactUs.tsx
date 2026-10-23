@@ -55,7 +55,7 @@ export default function ContactUs() {
               icon: MapPin,
               label: "Visit us",
               value: "Rayfield, Jos",
-              href: "#",
+              href: "https://www.google.com/maps/search/?api=1&query=Rayfield%2C%20Jos",
             },
           ].map((c, i) => (
             <motion.a
