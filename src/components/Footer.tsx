@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Heart } from "lucide-react";
 import { Star, Sparkle, Squiggle } from "./Doodles";
+import { ReadingStudent } from "./Scenes";
 
 const columns = [
   {
@@ -76,14 +77,7 @@ export default function Footer() {
 
           {/* Right: playful illustration */}
           <div className="justify-self-center lg:justify-self-end">
-            <Image
-              src="/footer-illustration.svg"
-              alt="A student happily reading on a stack of books"
-              width={1022}
-              height={813}
-              className="h-[200px] w-auto select-none md:h-[260px] lg:h-[300px]"
-              priority={false}
-            />
+            <ReadingStudent className="h-[200px] w-auto select-none md:h-[260px] lg:h-[300px]" />
           </div>
         </div>
 
