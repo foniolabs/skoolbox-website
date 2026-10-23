@@ -3,9 +3,9 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Download, Sparkles } from "lucide-react";
-import HeroScene from "./HeroScene";
+import TutorDemo from "./TutorDemo";
 import { WINDOWS_DOWNLOAD_URL, WINDOWS_SIZE } from "@/lib/download";
-import { Star, Squiggle, Dots, Arrow } from "./Doodles";
+import { Star, Squiggle, Dots, Arrow, Sparkle } from "./Doodles";
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -23,7 +23,7 @@ export default function Hero() {
       <Star className="absolute left-[6%] top-[22%] h-7 w-7 text-sun animate-float-slow" />
       <Dots className="absolute right-[4%] top-[14%] h-16 w-16 text-secondary/30" />
       <Squiggle className="absolute bottom-[14%] left-[12%] hidden h-6 w-28 text-coral md:block" />
-      <Star className="absolute bottom-[24%] right-[40%] h-5 w-5 text-accent animate-wobble" />
+      <Star className="absolute bottom-[12%] left-[45%] hidden h-5 w-5 text-accent animate-wobble md:block" />
 
       <div className="container-page flex min-h-screen items-center pb-24 pt-32 md:min-h-[720px] md:pb-20 md:pt-16 lg:min-h-[820px]">
         <div className="grid w-full items-center gap-6 md:grid-cols-12 md:gap-2">
@@ -76,12 +76,14 @@ export default function Hero() {
 
           <motion.div
             style={{ y: yScene }}
-            className="relative h-[320px] sm:h-[400px] md:col-span-7 md:h-[460px] lg:col-span-7 lg:h-[540px]"
+            className="relative mt-6 md:col-span-7 md:mt-0 lg:col-span-7"
           >
             {/* Inner wrapper owns the fade so its final transform doesn't
                 override the parallax `y` on the motion.div. */}
-            <div className="h-full w-full animate-fade-up [animation-delay:100ms]">
-              <HeroScene />
+            <div className="relative flex animate-fade-up justify-center [animation-delay:100ms] md:justify-end">
+              <Sparkle className="absolute -left-2 -top-6 h-8 w-8 text-sun animate-float-gentle md:left-6" />
+              <Star className="absolute -bottom-5 right-6 h-7 w-7 text-accent animate-wobble" />
+              <TutorDemo />
             </div>
           </motion.div>
         </div>
