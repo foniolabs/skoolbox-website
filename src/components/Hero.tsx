@@ -2,8 +2,9 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { Sparkles } from "lucide-react";
+import { Download, Sparkles } from "lucide-react";
 import HeroScene from "./HeroScene";
+import { WINDOWS_DOWNLOAD_URL } from "@/lib/download";
 import { Star, Squiggle, Dots, Arrow } from "./Doodles";
 
 export default function Hero() {
@@ -70,7 +71,11 @@ export default function Hero() {
               transition={{ duration: 0.72, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
               className="mt-8 flex flex-wrap items-center gap-3"
             >
-              <a href="#features" className="btn-primary">
+              <a href={WINDOWS_DOWNLOAD_URL} className="btn-primary">
+                <Download size={16} strokeWidth={2.6} />
+                Download for Windows
+              </a>
+              <a href="#features" className="btn-outline">
                 See how it works
               </a>
             </motion.div>
