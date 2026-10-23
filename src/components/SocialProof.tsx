@@ -72,10 +72,12 @@ export default function SocialProof() {
   });
 
   return (
-    <section ref={containerRef} className="relative bg-cream-50 min-h-[350vh] mt-24">
-      {/* Sticky wrapper */}
-      <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
-        <div className="container-page pb-20 pt-8 lg:pt-16">
+    // Scroll-pinned on desktop only; on mobile it's a normal section (the
+    // badges don't animate there, so pinning just added empty scrolling).
+    <section ref={containerRef} className="relative mt-24 bg-cream-50 md:min-h-[240vh]">
+      {/* Sticky wrapper (pt clears the 84px sticky header) */}
+      <div className="flex flex-col justify-center py-12 md:sticky md:top-0 md:h-screen md:overflow-hidden md:py-0 md:pt-[84px]">
+        <div className="container-page md:pb-12">
           {/* Centered heading */}
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="display text-4xl md:text-6xl lg:text-[4.8rem] leading-[1.04]">
@@ -90,7 +92,7 @@ export default function SocialProof() {
           </div>
 
           {/* Laptop + Floating Badges Showcase */}
-          <div className="relative mt-20 flex items-center justify-center min-h-[300px] md:min-h-[400px]">
+          <div className="relative mt-12 flex flex-col items-center justify-center md:mt-14 md:min-h-[400px] md:flex-row">
             {/* Central Laptop */}
             <div className="relative z-10 w-full max-w-lg scale-90 md:scale-100 lg:scale-110">
               <LaptopMockup />
@@ -170,8 +172,8 @@ export default function SocialProof() {
 
       </div>
 
-      {/* Spacing for scroll */}
-      <div className="h-[200vh]" />
+      {/* Spacing for scroll (desktop pin only) */}
+      <div className="hidden h-[140vh] md:block" />
     </section>
   );
 }

@@ -76,13 +76,14 @@ export default function Pricing() {
         <div className="mx-auto max-w-3xl text-center">
           <span className="eyebrow">Pricing</span>
           <h2 className="display mt-5 text-4xl md:text-6xl lg:text-[4.2rem]">
-            Affordable.{" "}
+            Pricing that{" "}
             <span className="marker text-primary">
-              <span>In Naira.</span>
+              <span>fits your school.</span>
             </span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg font-semibold text-ink/65">
-            Start free, upgrade when your school is ready.
+            Every school is different. Talk to us and we&rsquo;ll put together
+            a plan in Naira.
           </p>
         </div>
 

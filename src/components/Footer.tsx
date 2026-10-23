@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Instagram, Linkedin, Facebook, Heart } from "lucide-react";
+import { Heart } from "lucide-react";
 import { Star, Sparkle, Squiggle } from "./Doodles";
 
 const columns = [
@@ -13,30 +13,16 @@ const columns = [
       { label: "How it works", href: "#how-it-works" },
     ],
   },
+  // Blog, Roadmap, Privacy, Terms, DPA and the social icons were "#"
+  // placeholders; add them back here once those pages/accounts exist.
   {
     title: "Company",
     color: "text-accent",
     links: [
-      { label: "Blog", href: "#" },
-      { label: "Roadmap", href: "#" },
+      { label: "Download", href: "#download" },
       { label: "Contact", href: "mailto:hello@skoolbox.xyz" },
     ],
   },
-  {
-    title: "Legal",
-    color: "text-primary",
-    links: [
-      { label: "Privacy", href: "#" },
-      { label: "Terms", href: "#" },
-      { label: "DPA", href: "#" },
-    ],
-  },
-];
-
-const socials = [
-  { Icon: Instagram, label: "Instagram" },
-  { Icon: Linkedin, label: "LinkedIn" },
-  { Icon: Facebook, label: "Facebook" },
 ];
 
 export default function Footer() {
@@ -64,32 +50,19 @@ export default function Footer() {
               teachers plan, teach, quiz, and track — all in one app.
             </p>
 
-            <div className="mt-6 flex gap-3">
-              {socials.map(({ Icon, label }) => (
-                <a
-                  key={label}
-                  href="#"
-                  aria-label={label}
-                  className="grid h-10 w-10 place-items-center rounded-full border-2 border-ink bg-white text-ink shadow-sticker-sm transition-all duration-150 hover:-translate-y-0.5 hover:bg-sun active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
-                >
-                  <Icon size={17} strokeWidth={2.2} />
-                </a>
-              ))}
-            </div>
-
             {/* Link columns */}
-            <div className="mt-12 grid max-w-lg grid-cols-3 gap-8 sm:gap-12">
+            <div className="mt-12 grid max-w-sm grid-cols-2 gap-8 sm:gap-12">
               {columns.map((col) => (
                 <div key={col.title}>
                   <div className={`text-[12px] font-extrabold uppercase tracking-[0.18em] ${col.color}`}>
                     {col.title}
                   </div>
-                  <ul className="mt-5 space-y-3.5">
+                  <ul className="mt-3 space-y-0.5">
                     {col.links.map((l) => (
                       <li key={l.label}>
                         <a
                           href={l.href}
-                          className="text-sm font-bold text-ink/70 transition hover:text-ink"
+                          className="inline-block py-2.5 text-sm font-bold text-ink/70 transition hover:text-ink"
                         >
                           {l.label}
                         </a>

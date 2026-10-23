@@ -53,7 +53,7 @@ body {
 
   /* Sticker-style eyebrow badge — small rounded chip with a doodle feel. */
   .eyebrow {
-    @apply inline-flex items-center gap-1.5 rounded-full border-2 border-ink bg-sun px-3.5 py-1.5 text-[12px] font-extrabold uppercase tracking-[0.14em] text-ink;
+    @apply inline-flex items-center gap-1.5 rounded-full border-2 border-ink bg-sun px-3.5 py-1.5 text-[12px] font-extrabold uppercase tracking-[0.14em] text-ink sm:text-[13px];
   }
 
   .display {

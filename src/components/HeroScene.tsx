@@ -30,9 +30,6 @@ export default function HeroScene() {
         role="img"
         aria-label="A teacher presenting a lesson with SkoolBox, surrounded by AI tutor, quiz and progress cards"
         className="h-full w-full max-w-[640px] overflow-visible"
-        initial={{ opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
         {/* ---- backdrop blobs + sun ---- */}
         <path
