@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Download, Sparkles } from "lucide-react";
 import TutorDemo from "./TutorDemo";
+import HeroBooks3D from "./three/HeroBooks3D";
 import { WINDOWS_DOWNLOAD_URL, WINDOWS_SIZE } from "@/lib/download";
 import { Star, Squiggle, Dots, Arrow, Sparkle } from "./Doodles";
 
@@ -83,6 +84,10 @@ export default function Hero() {
             <div className="relative flex animate-fade-up justify-center [animation-delay:100ms] md:justify-end">
               <Sparkle className="absolute -left-2 -top-6 h-8 w-8 text-sun animate-float-gentle md:left-6" />
               <Star className="absolute -bottom-5 right-6 h-7 w-7 text-accent animate-wobble" />
+              {/* 3D logo book stack, sitting just left of the 520px tutor
+                  card. xl+ only and progressively enhanced: devices that
+                  fail canRun3D() never download three.js. */}
+              <HeroBooks3D className="pointer-events-none absolute bottom-2 right-[500px] z-20 hidden h-[230px] w-[230px] xl:block" />
               <TutorDemo />
             </div>
           </motion.div>
