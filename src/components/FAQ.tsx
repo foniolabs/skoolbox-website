@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     q: "Is the curriculum aligned with WAEC and NECO?",
-    a: "Yes. SkoolBox follows the Nigerian secondary school curriculum from JSS1 to SS3 and supports WAEC, NECO, and JAMB preparation.",
+    a: "Yes. SkoolBox follows the Nigerian primary and secondary curriculum, from Primary 5 to SS3, and supports WAEC, NECO, and JAMB preparation.",
   },
   {
     q: "How is student data protected?",

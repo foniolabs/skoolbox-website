@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://skoolbox.xyz"),
-  title: "SkoolBox — Offline-first AI tutor for Nigerian secondary schools",
+  title: "SkoolBox — Offline-first AI tutor for Nigerian primary and secondary schools",
   description:
     "SkoolBox brings an AI teaching assistant, structured curriculum, lesson planning, presentation mode, and adaptive quizzes to every classroom — even without the internet.",
   icons: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "SkoolBox — Learn anywhere. Even offline.",
     description:
-      "An AI-powered learning platform built for Nigerian secondary schools. Works fully offline.",
+      "An AI-powered learning platform built for Nigerian primary and secondary schools. Works fully offline.",
     url: "https://skoolbox.xyz",
     siteName: "SkoolBox",
     type: "website",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "SkoolBox",
-    description: "Offline-first AI tutor for Nigerian secondary schools.",
+    description: "Offline-first AI tutor for Nigerian primary and secondary schools.",
   },
 };
 
