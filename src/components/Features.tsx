@@ -69,7 +69,7 @@ const columns: Feature[][] = [
     },
     {
       title: "Curriculum Aligned",
-      desc: "Full Nigerian curriculum, JSS1 to SS3, with WAEC and NECO prep.",
+      desc: "Full Nigerian curriculum, Primary 5 to SS3, with WAEC and NECO prep.",
       art: "curriculum",
       panel: "bg-primary-100",
     },

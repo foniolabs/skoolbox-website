@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 type Fact = { value: string; label: string; note: string };
 
 const facts: Fact[] = [
-  { value: "JSS1–SS3", label: "Nigerian curriculum", note: "every class, one app" },
+  { value: "Pry 5–SS3", label: "Primary & secondary", note: "Nigerian curriculum, one app" },
   { value: "WAEC · NECO", label: "Exam preparation", note: "plus JAMB practice" },
   { value: "Offline", label: "No internet needed", note: "lessons, quizzes and tracking" },
 ];
