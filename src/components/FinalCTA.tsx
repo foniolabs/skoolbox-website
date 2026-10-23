@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ShieldCheck, WifiOff } from "lucide-react";
+import { Download, ShieldCheck, WifiOff } from "lucide-react";
 import { Sparkle } from "./Doodles";
+import { WINDOWS_DOWNLOAD_URL, WINDOWS_SIZE, WINDOWS_VERSION } from "@/lib/download";
 
 export default function FinalCTA() {
   return (
@@ -74,7 +75,15 @@ export default function FinalCTA() {
               learning should be.
             </h2>
 
-            <div className="mt-10 flex justify-center gap-6 text-[13px] font-bold tracking-tight text-ink/65">
+            <a href={WINDOWS_DOWNLOAD_URL} className="btn-dark mt-10">
+              <Download size={16} strokeWidth={2.6} />
+              Download for Windows
+            </a>
+            <p className="mt-3 text-[13px] font-bold text-ink/60">
+              Windows 10/11 · 64-bit · v{WINDOWS_VERSION} · {WINDOWS_SIZE}
+            </p>
+
+            <div className="mt-8 flex justify-center gap-6 text-[13px] font-bold tracking-tight text-ink/65">
               <span className="inline-flex items-center gap-2">
                 <WifiOff size={14} /> OFFLINE-FIRST
               </span>
