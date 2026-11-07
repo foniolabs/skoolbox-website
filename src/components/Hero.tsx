@@ -2,10 +2,10 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { Download, Sparkles } from "lucide-react";
+import { Download, MonitorSmartphone, Sparkles } from "lucide-react";
 import TutorDemo from "./TutorDemo";
 import HeroBooks3D from "./three/HeroBooks3D";
-import { WINDOWS_DOWNLOAD_URL, WINDOWS_SIZE } from "@/lib/download";
+import { WEB_APP_URL, WINDOWS_DOWNLOAD_URL, WINDOWS_SIZE } from "@/lib/download";
 import { Star, Squiggle, Dots, Arrow, Sparkle } from "./Doodles";
 
 export default function Hero() {
@@ -61,8 +61,9 @@ export default function Hero() {
                 <Download size={16} strokeWidth={2.6} />
                 Download for Windows
               </a>
-              <a href="#features" className="btn-outline">
-                See how it works
+              <a href={WEB_APP_URL} className="btn-outline">
+                <MonitorSmartphone size={16} strokeWidth={2.6} />
+                Try the web demo
               </a>
             </div>
             <p className="mt-3 animate-fade-up text-[13px] font-bold text-ink/60 [animation-delay:260ms]">
