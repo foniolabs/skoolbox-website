@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import { WEB_APP_URL } from "@/lib/download";
 
 const navLinks = [
   { label: "For schools", href: "#pricing" },
@@ -87,6 +88,13 @@ export default function Header() {
           ))}
         </nav>
 
+        <a
+          href={WEB_APP_URL}
+          className="hidden items-center rounded-full border-2 border-ink bg-primary px-5 py-2.5 text-sm font-extrabold text-white shadow-sticker-sm transition-all duration-150 hover:-translate-y-0.5 lg:inline-flex"
+        >
+          Try the web demo
+        </a>
+
         <button
           aria-label="Toggle menu"
           onClick={() => setOpen(!open)}
@@ -109,6 +117,12 @@ export default function Header() {
                 {l.label}
               </a>
             ))}
+            <a
+              href={WEB_APP_URL}
+              className="mt-2 inline-flex min-h-[44px] items-center justify-center rounded-full border-2 border-ink bg-primary px-5 text-[15px] font-extrabold text-white"
+            >
+              Try the web demo
+            </a>
           </div>
         </div>
       )}

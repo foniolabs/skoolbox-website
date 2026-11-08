@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Download, ShieldCheck, WifiOff } from "lucide-react";
 import { Sparkle } from "./Doodles";
-import { WINDOWS_DOWNLOAD_URL, WINDOWS_SIZE, WINDOWS_VERSION } from "@/lib/download";
+import { WEB_APP_URL, WINDOWS_DOWNLOAD_URL, WINDOWS_SIZE, WINDOWS_VERSION } from "@/lib/download";
 
 export default function FinalCTA() {
   return (
@@ -91,6 +91,12 @@ export default function FinalCTA() {
             <p className="mt-3 text-[13px] font-bold text-ink/60">
               Windows 10/11 · 64-bit · v{WINDOWS_VERSION} · {WINDOWS_SIZE}
             </p>
+            <a
+              href={WEB_APP_URL}
+              className="mt-4 inline-flex min-h-[44px] items-center text-[15px] font-extrabold text-ink underline decoration-2 underline-offset-4 hover:text-ink/75"
+            >
+              Or try the web demo in your browser&nbsp;→
+            </a>
 
             <div className="mt-8 flex justify-center gap-6 text-[13px] font-bold tracking-tight text-ink/65">
               <span className="inline-flex items-center gap-2">
